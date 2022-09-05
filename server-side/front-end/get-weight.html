@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weighing Scale</title>
+</head>
+<body>
+    <h1>Weighing Scale</h1>
+    
+    <textarea id="weight-log" cols="100" rows="20"></textarea>
+
+    <script>
+        const balance_id = 1;
+
+        const chatSocket = new WebSocket(`wss://${window.location.host}/wss/get-balance/${balance_id}/`);
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            console.log(data)
+            document.querySelector('#weight-log').value += (data.message + '\n');
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+    </script>
+</body>
+</html>
