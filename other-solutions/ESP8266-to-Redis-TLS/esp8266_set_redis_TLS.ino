@@ -1,12 +1,12 @@
 #include <Redis.h>
 #include <ESP8266WiFi.h>
 
-#define WIFI_SSID "OP"
-#define WIFI_PASSWORD "mehdi123"
+#define WIFI_SSID "WIFI_SSID"
+#define WIFI_PASSWORD "WIFI_PASSWORD"
 
-#define REDIS_ADDR "mellah-avenir.ddns.net"
-#define REDIS_PORT 6380 
-#define REDIS_PASSWORD "Redis12341234"
+#define REDIS_ADDR "REDIS_ADDR"
+#define REDIS_PORT 6380 // 6379 is the default port
+#define REDIS_PASSWORD "REDIS_PASSWORD"
 
 void setup() {
   Serial.begin(115200);

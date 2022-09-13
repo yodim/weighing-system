@@ -8,7 +8,7 @@
 
     <script type="text/javascript" language="javascript">
         function MQTT(action, topic, message) {
-            var client = new Paho.MQTT.Client("mqtt.eclipseprojects.io", 443, "subscriber");
+            var client = new Paho.MQTT.Client("mqtt.eclipseprojects.io", 443, "subscriber"); // i used this public broker for testing
             //client.onConnectionLost = onConnectionLost;
             
             var options = {

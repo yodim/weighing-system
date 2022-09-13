@@ -27,7 +27,7 @@ def on_disconnect(client, userdata, rc):
 # Creating a Client Instance
 client_name = "test0_user00"
 client = mqtt.Client(client_name, transport='websockets')
-client.tls_set(certifi.where())  #"C:/Users/asus/Downloads/isrgrootx1(1).pem" let's encrypt cert
+client.tls_set(certifi.where()) 
 
 client.on_publish = on_publish        #assign function to callback
 client.on_subscribe = on_subscribe        #assign function to callback
@@ -35,7 +35,7 @@ client.on_message = on_message        #assign function to callback
 
 # Connecting To a Broker
 print("connecting to broker...")
-client.connect("mqtt.eclipseprojects.io", port=443, keepalive=60, bind_address="")
+client.connect("mqtt.eclipseprojects.io", port=443, keepalive=60, bind_address="") #i used this public broker for testing
 
 # Start loop
 client.loop_start()

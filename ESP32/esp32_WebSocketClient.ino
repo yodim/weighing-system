@@ -2,8 +2,8 @@
 #include <WiFiClientSecure.h>
 #include <WebSocketsClient.h>
 
-const char* ssid     = "OP";     // your network SSID (name of wifi network)
-const char* password = "mehdi123";               // your network password
+const char* ssid     = "WIFI_SSID";     // your network SSID (name of wifi network)
+const char* password = "WIFI_PASSWORD";               // your network password
 
 WiFiClientSecure client;
 WebSocketsClient webSocket;
@@ -62,14 +62,14 @@ void setup() {
 
 
   // server address, port and URL
-  webSocket.beginSSL("mellah-avenir.ddns.net", 8001, "/wss/set-balance/1/" );
+  webSocket.beginSSL("server_addr", 8001, "/wss/set-balance/1/" );
   webSocket.setExtraHeaders("Origin: http://127.0.0.1"); // add Origin header to authorize connection
 
   // event handler
   webSocket.onEvent(webSocketEvent);
 
   // use HTTP Basic Authorization this is optional remove if not needed
-  webSocket.setAuthorization("omar", "omar");
+ // webSocket.setAuthorization("username", "password");
 
   // try ever 5000 again if connection has failed
   webSocket.setReconnectInterval(5000);
@@ -83,6 +83,7 @@ void loop() {
 
   while (Serial.available()) {
     int_tmp = Serial.read();
+    // parsing the read data
     if ( int_tmp == '=') {
       int i = 0;
       while (Serial.available() && i < 10) {
@@ -97,6 +98,7 @@ void loop() {
     }
   }
   if ( poids[0] ) {
+    // formatting the data as json to send to the server
     String msg = "{\"message\": \"" + String(poids) + "\", \"secret\": \"s3cr3t\"}";
     webSocket.sendTXT(msg);
   }
