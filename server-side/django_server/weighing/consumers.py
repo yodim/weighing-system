@@ -92,7 +92,7 @@ class SetBalance(WebsocketConsumer):
             per = True
 
         if per:
-            r = redis.Redis(host='localhost',password='Redis12341234', port=6379, db=0)
+            r = redis.Redis(host='redis_addr',password='redis_password', port=6379, db=0)
             r.set(f"balance-{self.balance_id}", message*1000)
             async_to_sync(self.channel_layer.group_send)(
                 self.balance_group_name_get,
